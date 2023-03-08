@@ -18,6 +18,6 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    path('transfer/', include('transfer.urls'))
+    path('drive/', include('drive.urls'))
     #    path('admin/', admin.site.urls),
 ]
