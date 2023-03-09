@@ -40,7 +40,7 @@ def api_get_directory(request):
             }
             if obj['is_file']:
                 result = re.findall(r'\.[\w\d]*$', f.name)
-                obj['extension'] = result[0] if result else None
+                obj['extension'] = result[0][1:] if result else None
             response['directory'].append(obj)
         return JsonResponse(response)
 
