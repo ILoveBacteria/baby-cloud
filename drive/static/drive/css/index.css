@@ -1,0 +1,29 @@
+.directory-img {
+    max-width: 3rem;
+}
+
+.directory-card {
+    border-radius: 0.5rem;
+    background-color: white;
+    padding: 1rem;
+    width: 9rem;
+    height: 9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.directory-card:hover {
+    background-color: lightblue;
+}
+
+.directory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    grid-auto-flow: row;
+    gap: .5rem;
+    justify-items: center;
+    align-items: center;
+}
