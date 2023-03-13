@@ -4,7 +4,7 @@ export class Directory extends React.Component {
     render() {
         let imageSrc;
         if (this.props.isFile === false) {
-            imageSrc = '/static/drive/folder.png';
+            imageSrc = '/static/drive/image/folder.png';
         }
 
         return (
