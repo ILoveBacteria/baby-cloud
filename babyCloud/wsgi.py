@@ -1,5 +1,5 @@
 """
-WSGI config for localDataTransfer project.
+WSGI config for babyCloud project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'localDataTransfer.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'babyCloud.settings')
 
 application = get_wsgi_application()
