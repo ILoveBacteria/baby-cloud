@@ -6,17 +6,16 @@ from django.http import JsonResponse
 import os
 
 
-# Create your views here.
-def index(request):
+def drive(request):
     context = {
-        'title': 'Drive'
+        'title': 'Baby Cloud | Drive'
     }
-    return render(request, 'drive/index.html', context)
+    return render(request, 'drive/drive.html', context)
 
 
 def api_doc(request):
     context = {
-        'title': 'API DOC | Drive'
+        'title': 'Baby Cloud | API DOC'
     }
     return render(request, 'drive/api_doc.html', context)
 

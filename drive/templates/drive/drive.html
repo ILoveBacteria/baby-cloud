@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link href="{% static 'drive/css/index.css' %}" rel="stylesheet">
+    <script defer type="module" src="{% static 'drive/dist/main.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div id="app"></div>
+    </main>
+{% endblock %}
