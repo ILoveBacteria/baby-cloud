@@ -32,3 +32,22 @@
     justify-items: center;
     align-items: center;
 }
+
+#arrow-backward {
+    width: 3rem;
+    filter: invert(52%) sepia(38%) saturate(796%) hue-rotate(157deg) brightness(94%) contrast(92%);
+}
+
+header {
+    box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px 0, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+    border-radius: .5rem;
+    backdrop-filter: blur(20px);
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+main {
+    position: relative;
+    top: 5rem;
+}
