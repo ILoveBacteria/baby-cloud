@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {Directory} from "./Directory";
+import {Toolbar} from './Toolbar';
 
 
 class App extends React.Component {
@@ -45,12 +46,16 @@ class App extends React.Component {
 
         let directoriesComponent = []
         for (const directory of this.state.directory) {
-            directoriesComponent.push(<Directory isFile={directory.is_file} name={directory.name}
-                                                 path={directory.path} changePath={this.changePath} />);
+            directoriesComponent.push(<Directory directory={directory} changePath={this.changePath}/>);
         }
         return (
-            <div className='directory-grid'>
-                {directoriesComponent}
+            <div>
+                <header>
+                    <Toolbar/>
+                </header>
+                <main className='directory-grid'>
+                    {directoriesComponent}
+                </main>
             </div>
         );
     }
