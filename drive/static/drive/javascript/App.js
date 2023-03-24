@@ -8,8 +8,9 @@ import {Toolbar} from './Toolbar';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {'directory': null, 'path': 'D:/'}
+        this.state = {directory: null, path: null, exploreStack: []}
         this.changePath = this.changePath.bind(this);
+        this.backward = this.backward.bind(this);
     }
 
     async getDirectories(path) {
@@ -28,14 +29,22 @@ class App extends React.Component {
     }
 
     changePath(newPath) {
+        this.state.exploreStack.push(this.state.path);
         this.getDirectories(newPath)
-            .then(resolve => this.setState({'directory': resolve.directory, 'path': newPath}))
+            .then(resolve => this.setState({directory: resolve.directory, path: newPath}))
+            .catch(reject => console.log(reject));
+    }
+
+    backward() {
+        let previousPath = this.state.exploreStack.pop();
+        this.getDirectories(previousPath)
+            .then(resolve => this.setState({directory: resolve.directory, path: previousPath}))
             .catch(reject => console.log(reject));
     }
 
     componentDidMount() {
-        this.getDirectories(this.state.path)
-            .then(resolve => this.setState({'directory': resolve.directory}))
+        this.getDirectories('D:/')
+            .then(resolve => this.setState({directory: resolve.directory, path: 'D:/'}))
             .catch(reject => console.log(reject));
     }
 
@@ -51,7 +60,7 @@ class App extends React.Component {
         return (
             <div>
                 <header>
-                    <Toolbar/>
+                    <Toolbar backward={this.backward} backwardEnable={this.state.exploreStack.length > 0}/>
                 </header>
                 <main className='directory-grid'>
                     {directoriesComponent}
