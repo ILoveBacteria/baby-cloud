@@ -36,13 +36,35 @@ def api_get_directory(request):
                 'path': f'{path}/{f.name}',
                 'size': f.stat().st_size,
                 'extension': None,
+                'type': None,
             }
             if obj['is_file']:
                 result = re.findall(r'\.[\w\d]*$', f.name)
                 obj['extension'] = result[0][1:] if result else None
+            obj['type'] = extension_to_type(obj['extension']) if obj['is_file'] else 'directory'
             response['directory'].append(obj)
         return JsonResponse(response)
 
 
 def api_file(request):
     pass
+
+
+def extension_to_type(extension: str) -> str:
+    if extension is None:
+        return 'unknown'
+    type_extension_dict = {
+        'image': ['jpeg', 'jpg', 'png', 'ico'],
+        'video': ['mp4', 'mkv'],
+        'music': ['mp3', 'wav'],
+    }
+    for key, value in type_extension_dict.items():
+        if extension in value:
+            return key
+    if extension == 'pdf':
+        return 'pdf'
+    if extension == 'iso':
+        return 'iso'
+    if extension == 'zip':
+        return 'zip'
+    return 'unknown'
