@@ -7,19 +7,15 @@ export class Directory extends React.Component {
     }
 
     onClickHandler(_) {
-        this.props.changePath(this.props.path);
+        this.props.changePath(this.props.directory.path);
     }
 
     render() {
-        let imageSrc;
-        if (this.props.isFile === false) {
-            imageSrc = '/static/drive/image/folder.png';
-        }
-
+        let imageSrc = `/static/drive/image/${this.props.directory.type}.png`;
         return (
             <div className="directory-card" onClick={this.onClickHandler}>
                 <img src={imageSrc} className="directory-img" alt="Directory icon" />
-                <div className="directory-name">{this.props.name}</div>
+                <div className="directory-name">{this.props.directory.name}</div>
             </div>
         );
     }

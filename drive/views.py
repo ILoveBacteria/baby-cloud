@@ -40,7 +40,7 @@ def api_get_directory(request):
             }
             if obj['is_file']:
                 result = re.findall(r'\.[\w\d]*$', f.name)
-                obj['extension'] = result[0][1:] if result else None
+                obj['extension'] = result[0][1:].lower() if result else None
             obj['type'] = extension_to_type(obj['extension']) if obj['is_file'] else 'directory'
             response['directory'].append(obj)
         return JsonResponse(response)
@@ -55,7 +55,7 @@ def extension_to_type(extension: str) -> str:
         return 'unknown'
     type_extension_dict = {
         'image': ['jpeg', 'jpg', 'png', 'ico'],
-        'video': ['mp4', 'mkv'],
+        'video': ['mp4', 'mkv', 'mov'],
         'music': ['mp3', 'wav'],
     }
     for key, value in type_extension_dict.items():
