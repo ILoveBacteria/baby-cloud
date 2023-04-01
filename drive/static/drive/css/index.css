@@ -58,6 +58,7 @@ main {
     margin-right: 1rem;
     filter: invert(24%) sepia(0%) saturate(33%) hue-rotate(195deg) brightness(93%) contrast(93%);
     padding: .5rem;
+    border-radius: .5rem;
 }
 
 .toolbar-button-disable {

@@ -7,7 +7,11 @@ export class Directory extends React.Component {
     }
 
     onClickHandler(_) {
-        this.props.changePath(this.props.directory.path);
+        if (this.props.directory.is_directory) {
+            this.props.changePath(this.props.directory.path);
+        } else {
+            this.props.selectFile(this.props.directory)
+        }
     }
 
     render() {

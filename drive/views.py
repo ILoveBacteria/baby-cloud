@@ -1,8 +1,8 @@
-import re
-
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.http import FileResponse
 
+import re
 import os
 
 
@@ -47,7 +47,8 @@ def api_get_directory(request):
 
 
 def api_file(request):
-    pass
+    path = request.GET['path']
+    return FileResponse(open(path, 'rb'))
 
 
 def extension_to_type(extension: str) -> str:
