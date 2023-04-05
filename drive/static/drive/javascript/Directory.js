@@ -16,8 +16,9 @@ export class Directory extends React.Component {
 
     render() {
         let imageSrc = `/static/drive/image/${this.props.directory.type}.png`;
+        let directoryClass = this.props.selected ? 'directory-card directory-selected' : 'directory-card';
         return (
-            <div className="directory-card" onClick={this.onClickHandler}>
+            <div className={directoryClass} onClick={this.onClickHandler}>
                 <img src={imageSrc} className="directory-img" alt="Directory icon" />
                 <div className="directory-name">{this.props.directory.name}</div>
             </div>

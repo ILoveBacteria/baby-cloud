@@ -62,8 +62,9 @@ class App extends React.Component {
 
         let directoriesComponent = []
         for (const directory of this.state.directory) {
+            let selected = this.state.selectedFile === directory;
             directoriesComponent.push(<Directory directory={directory} changePath={this.changePath}
-                                                 selectFile={this.selectFile}/>);
+                                                 selectFile={this.selectFile} selected={selected}/>);
         }
         return (
             <div>
