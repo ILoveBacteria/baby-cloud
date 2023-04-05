@@ -17,9 +17,11 @@ export class Toolbar extends React.Component {
             'arrow-button toolbar-button toolbar-button-disable';
         let downloadButtonClass = 'toolbar-button toolbar-button-disable';
         let selectedFilePath = '';
+        let deselectButton = false;
         if (this.props.selectedFile) {
             downloadButtonClass = 'toolbar-button';
             selectedFilePath = `./api/file?path=${this.props.selectedFile.path}`;
+            deselectButton = true;
         }
 
         return (
@@ -30,6 +32,7 @@ export class Toolbar extends React.Component {
                 <a href={selectedFilePath} target="_blank" download>
                     <img src="/static/drive/image/cloud-arrow-down.svg" className={downloadButtonClass}/>
                 </a>
+                {deselectButton && <span className="toolbar-button" onClick={this.props.deselectFile}>Deselect</span>}
             </div>
         );
     }

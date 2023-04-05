@@ -12,6 +12,7 @@ class App extends React.Component {
         this.changePath = this.changePath.bind(this);
         this.backward = this.backward.bind(this);
         this.selectFile = this.selectFile.bind(this);
+        this.deselectFile = this.deselectFile.bind(this);
     }
 
     async getDirectories(path) {
@@ -49,6 +50,10 @@ class App extends React.Component {
         this.setState({selectedFile: directory});
     }
 
+    deselectFile() {
+        this.setState({selectedFile: null});
+    }
+
     componentDidMount() {
         this.getDirectories('D:/')
             .then(resolve => this.setState({directory: resolve.directory, currentPath: 'D:/'}))
@@ -70,7 +75,7 @@ class App extends React.Component {
             <div>
                 <header>
                     <Toolbar backward={this.backward} backwardEnable={this.state.exploreStack.length > 0}
-                             selectedFile={this.state.selectedFile}/>
+                             selectedFile={this.state.selectedFile} deselectFile={this.deselectFile}/>
                 </header>
                 <main className='directory-grid'>
                     {directoriesComponent}
