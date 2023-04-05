@@ -27,7 +27,7 @@ export class Toolbar extends React.Component {
                 <img src="/static/drive/image/arrow-left.svg" className={arrowButtonClass}
                      onClick={this.backwardOnClick}/>
                 <img src="/static/drive/image/arrow-right.svg" className="arrow-button toolbar-button"/>
-                <a href={selectedFilePath} target="_blank">
+                <a href={selectedFilePath} target="_blank" download>
                     <img src="/static/drive/image/cloud-arrow-down.svg" className={downloadButtonClass}/>
                 </a>
             </div>
