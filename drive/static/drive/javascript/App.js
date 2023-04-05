@@ -15,14 +15,8 @@ class App extends React.Component {
     }
 
     async getDirectories(path) {
-        const url = `http://localhost:8000/drive/api/directory?path=${path}`;
-        const init = {
-            headers: new Headers({
-                'Accept': 'application/json',
-                'Origin': 'http://localhost:8000',
-            })
-        }
-        let response = await fetch(url, init);
+        const url = `/drive/api/directory?path=${path}`;
+        let response = await fetch(url);
         if (response.ok) {
             return await response.json();
         }
