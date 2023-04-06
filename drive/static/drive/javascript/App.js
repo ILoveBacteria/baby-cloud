@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {Directory} from "./Directory";
 import {Toolbar} from './Toolbar';
+import {DirectoryGrid} from "./DirectoryGrid";
 
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {directory: null, currentPath: null, exploreStack: [], selectedFile: null};
+        this.state = {directories: null, currentPath: null, exploreStack: [], selectedFile: null};
     }
 
-    getDirectories = async (path) => {
+    fetchDirectories = async (path) => {
         const url = `/drive/api/directory?path=${path}`;
         let response = await fetch(url);
         if (response.ok) {
@@ -20,30 +20,28 @@ class App extends React.Component {
         throw new Error('The response code is not ok');
     }
 
-    changePath = (newPath) => {
-        this.state.exploreStack.push(this.state.currentPath);
-        this.getDirectories(newPath)
+    setAndFetchDirectories = (path) => {
+        this.fetchDirectories(path)
             .then(resolve => this.setState({
-                directory: resolve.directory,
-                currentPath: newPath,
+                directories: resolve.directory,
+                currentPath: path,
                 selectedFile: null
             }))
             .catch(reject => console.log(reject));
+    }
+
+    changePath = (newPath) => {
+        this.state.exploreStack.push(this.state.currentPath);
+        this.setAndFetchDirectories(newPath);
     }
 
     backward = () => {
         let previousPath = this.state.exploreStack.pop();
-        this.getDirectories(previousPath)
-            .then(resolve => this.setState({
-                directory: resolve.directory,
-                currentPath: previousPath,
-                selectedFile: null
-            }))
-            .catch(reject => console.log(reject));
+        this.setAndFetchDirectories(previousPath);
     }
 
-    selectFile = (directory) => {
-        this.setState({selectedFile: directory});
+    selectFile = (fileObject) => {
+        this.setState({selectedFile: fileObject});
     }
 
     deselectFile = () => {
@@ -51,30 +49,23 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.getDirectories('D:/')
-            .then(resolve => this.setState({directory: resolve.directory, currentPath: 'D:/'}))
-            .catch(reject => console.log(reject));
+        this.setAndFetchDirectories('D:/');
     }
 
     render() {
-        if (this.state.directory === null) {
+        if (this.state.directories === null) {
             return <p>Wait for fetch data...</p>;
         }
 
-        let directoriesComponent = []
-        for (const directory of this.state.directory) {
-            let selected = this.state.selectedFile === directory;
-            directoriesComponent.push(<Directory directory={directory} changePath={this.changePath}
-                                                 selectFile={this.selectFile} selected={selected}/>);
-        }
         return (
             <div>
                 <header>
                     <Toolbar backward={this.backward} backwardEnable={this.state.exploreStack.length > 0}
                              selectedFile={this.state.selectedFile} deselectFile={this.deselectFile}/>
                 </header>
-                <main className='directory-grid'>
-                    {directoriesComponent}
+                <main>
+                    <DirectoryGrid directories={this.state.directories} selectedFile={this.state.selectedFile}
+                                   changePath={this.changePath} selectFile={this.selectFile}/>
                 </main>
             </div>
         );
