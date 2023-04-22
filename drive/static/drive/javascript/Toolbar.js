@@ -1,12 +1,6 @@
 import React from 'react';
 
 
-function onClickBackward(e, enable, backward) {
-    if (enable) {
-        backward();
-    }
-}
-
 export function Toolbar(props) {
     let arrowButtonClass = props.backwardEnable ? 'arrow-button toolbar-button' :
         'arrow-button toolbar-button toolbar-button-disable';
@@ -30,4 +24,10 @@ export function Toolbar(props) {
             {deselectButton && <span className="toolbar-button" onClick={props.deselectFile}>Deselect</span>}
         </div>
     );
+}
+
+function onClickBackward(e, enable, backward) {
+    if (enable) {
+        backward();
+    }
 }

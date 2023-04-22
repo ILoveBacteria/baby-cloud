@@ -2,6 +2,14 @@ import React from 'react';
 import {Directory} from "./Directory";
 
 
+export function DirectoryGrid(props) {
+    return (
+        <div className="directory-grid">
+            {generateDirectories(props)}
+        </div>
+    )
+}
+
 function generateDirectories(props) {
     let directoryComponents = [];
     for (const directory of props.directories) {
@@ -11,12 +19,4 @@ function generateDirectories(props) {
         directoryComponents.push(component);
     }
     return directoryComponents;
-}
-
-export function DirectoryGrid(props) {
-    return (
-        <div className="directory-grid">
-            {generateDirectories(props)}
-        </div>
-    )
 }
