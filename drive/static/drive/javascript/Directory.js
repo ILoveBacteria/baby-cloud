@@ -13,7 +13,7 @@ export function Directory(props) {
 }
 
 function onClickHandler(e, props) {
-    if (props.directory.is_directory) {
+    if (props.directory.isDirectory) {
         props.changePath(props.directory.path);
     } else {
         props.selectFile(props.directory)
