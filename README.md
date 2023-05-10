@@ -11,3 +11,17 @@
 
 ## Description
 
+The project is a web application that allows users to transfer files between any device with ease.
+It provides a simple and user-friendly interface that enables users to upload and download files quickly.
+
+An important feature of this project is its compatibility with all devices.
+Whether you're using a desktop computer, laptop, tablet, or smartphone, you can easily access the web application and
+transfer files between devices.
+
+A cool feature is you can access your computer files while you not at home *(not yet secure)*
+
+## Screenshots
+
+[![screenshot](/assets/screenshot.jpg)]()
+
+*project in development*
