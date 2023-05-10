@@ -28,8 +28,8 @@ A cool feature is you can access your computer files while you not at home *(not
 - [ ] Login users
 - [ ] Security
 - [ ] Shortcuts for starting and shutting down the server
-- [ ] UI improvments
-- [ ] Code improvments
+- [ ] UI improvements
+- [ ] Code improvements
 
 ## Screenshots
 
