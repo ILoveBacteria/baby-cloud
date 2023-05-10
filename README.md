@@ -22,6 +22,6 @@ A cool feature is you can access your computer files while you not at home *(not
 
 ## Screenshots
 
-[![screenshot](/assets/screenshot.jpg)]()
+[![screenshot](/assets/screenshot.png)]()
 
 *project in development*
