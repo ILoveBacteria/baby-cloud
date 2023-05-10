@@ -20,6 +20,17 @@ transfer files between devices.
 
 A cool feature is you can access your computer files while you not at home *(not yet secure)*
 
+## Goals
+
+- [x] Explore files
+- [x] Download file
+- [ ] Upload File (expecting the pre-release version)
+- [ ] Login users
+- [ ] Security
+- [ ] Shortcuts for starting and shutting down the server
+- [ ] UI improvments
+- [ ] Code improvments
+
 ## Screenshots
 
 [![screenshot](/assets/screenshot.png)]()
