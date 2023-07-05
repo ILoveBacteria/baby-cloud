@@ -1,6 +1,6 @@
 {
-  "name": "local_data_transfer",
-  "version": "1.0.0",
+  "name": "baby-cloud",
+  "version": "0.0.0",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -13,7 +13,8 @@
   },
   "main": "App.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":  "npx babel drive/static/drive/javascript --out-dir drive/static/drive/compiled --presets react-app/prod && npx webpack"
   },
   "keywords": [],
   "author": "",

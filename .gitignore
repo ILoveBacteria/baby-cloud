@@ -3,3 +3,5 @@
 /db.sqlite3
 /drive/static/drive/compiled/
 /drive/static/drive/dist/
+*/__pycache__/
+*/*/__pycache__/

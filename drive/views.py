@@ -8,14 +8,14 @@ import os
 
 def drive(request):
     context = {
-        'title': 'Baby Cloud | Drive'
+        'title': ' Drive | Baby Cloud'
     }
     return render(request, 'drive/drive.html', context)
 
 
 def api_doc(request):
     context = {
-        'title': 'Baby Cloud | API DOC'
+        'title': 'API DOC | Baby Cloud'
     }
     return render(request, 'drive/api_doc.html', context)
 
@@ -31,17 +31,17 @@ def api_get_directory(request):
         for f in folder_list:
             obj = {
                 'name': f.name,
-                'is_directory': f.is_dir(),
-                'is_file': f.is_file(),
+                'isDirectory': f.is_dir(),
+                'isFile': f.is_file(),
                 'path': f'{path}/{f.name}',
                 'size': f.stat().st_size,
                 'extension': None,
                 'type': None,
             }
-            if obj['is_file']:
+            if obj['isFile']:
                 result = re.findall(r'\.[\w\d]*$', f.name)
                 obj['extension'] = result[0][1:].lower() if result else None
-            obj['type'] = extension_to_type(obj['extension']) if obj['is_file'] else 'directory'
+            obj['type'] = extension_to_type(obj['extension']) if obj['isFile'] else 'directory'
             response['directory'].append(obj)
         return JsonResponse(response)
 
