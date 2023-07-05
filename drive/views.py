@@ -8,14 +8,14 @@ import os
 
 def drive(request):
     context = {
-        'title': 'Baby Cloud | Drive'
+        'title': ' Drive | Baby Cloud'
     }
     return render(request, 'drive/drive.html', context)
 
 
 def api_doc(request):
     context = {
-        'title': 'Baby Cloud | API DOC'
+        'title': 'API DOC | Baby Cloud'
     }
     return render(request, 'drive/api_doc.html', context)
 
