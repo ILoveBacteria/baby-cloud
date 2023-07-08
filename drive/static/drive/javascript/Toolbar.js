@@ -22,6 +22,7 @@ export function Toolbar(props) {
                 <img src="/static/drive/image/cloud-arrow-down.svg" className={downloadButtonClass}/>
             </a>
             {deselectButton && <span className="toolbar-button" onClick={props.deselectFile}>Deselect</span>}
+            <span className="toolbar-button" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload file</span>
         </div>
     );
 }

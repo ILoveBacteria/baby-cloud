@@ -1,11 +1,14 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.http import FileResponse
-
-import re
 import os
+import re
+
+from django.http import JsonResponse, FileResponse, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import ensure_csrf_cookie
+
+from drive.forms import UploadFileForm
 
 
+@ensure_csrf_cookie
 def drive(request):
     context = {
         'title': ' Drive | Baby Cloud'
@@ -22,33 +25,49 @@ def api_doc(request):
 
 def api_get_directory(request):
     path = request.GET['path']
-    with os.scandir(path) as it:
-        folder_list = list(it)
-        response = {
-            'count': len(folder_list),
-            'directory': [],
+    dir_entries = os.scandir(path)
+    response = {
+        'count': 0,
+        'directory': [],
+    }
+    for entry in dir_entries:
+        obj = {
+            'name': entry.name,
+            'isDirectory': entry.is_dir(),
+            'isFile': entry.is_file(),
+            'path': f'{path}/{entry.name}',
+            'size': entry.stat().st_size,
+            'extension': None,
+            'type': None,
         }
-        for f in folder_list:
-            obj = {
-                'name': f.name,
-                'isDirectory': f.is_dir(),
-                'isFile': f.is_file(),
-                'path': f'{path}/{f.name}',
-                'size': f.stat().st_size,
-                'extension': None,
-                'type': None,
-            }
-            if obj['isFile']:
-                result = re.findall(r'\.[\w\d]*$', f.name)
-                obj['extension'] = result[0][1:].lower() if result else None
-            obj['type'] = extension_to_type(obj['extension']) if obj['isFile'] else 'directory'
-            response['directory'].append(obj)
-        return JsonResponse(response)
+        if obj['isFile']:
+            result = re.findall(r'\.[\w\d]*$', entry.name)
+            obj['extension'] = result[0][1:].lower() if result else None
+        obj['type'] = extension_to_type(obj['extension']) if obj['isFile'] else 'directory'
+        response['directory'].append(obj)
+        response['count'] += 1
+    return JsonResponse(response)
 
 
-def api_file(request):
+def api_download_file(request):
     path = request.GET['path']
     return FileResponse(open(path, 'rb'))
+
+
+def api_upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(form.cleaned_data['file'], form.cleaned_data['path'])
+            return HttpResponse('OK')
+        return HttpResponseBadRequest()
+    return HttpResponseNotAllowed(['POST'])
+
+
+def handle_uploaded_file(file, path):
+    with open(os.path.join(path, file.name), 'wb') as destination:
+        for chunk in file.chunks():
+            destination.write(chunk)
 
 
 def extension_to_type(extension: str) -> str:

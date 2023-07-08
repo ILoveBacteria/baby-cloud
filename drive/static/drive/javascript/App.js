@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Cookies from 'js-cookie';
 
 import {Toolbar} from './Toolbar';
 import {DirectoryGrid} from "./DirectoryGrid";
+import {UploadModal} from "./UploadModal";
 
 
 class App extends React.Component {
@@ -64,6 +66,7 @@ class App extends React.Component {
                              selectedFile={this.state.selectedFile} deselectFile={this.deselectFile}/>
                 </header>
                 <main>
+                    <UploadModal path={this.state.currentPath} csrf_token={Cookies.get('csrftoken')}/>
                     <DirectoryGrid directories={this.state.directories} selectedFile={this.state.selectedFile}
                                    changePath={this.changePath} selectFile={this.selectFile}/>
                 </main>
