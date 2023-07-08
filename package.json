@@ -6,6 +6,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-react-app": "^3.1.2",
     "babel-runtime": "^6.26.0",
+    "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "webpack": "^5.76.1",
@@ -14,7 +15,7 @@
   "main": "App.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build":  "npx babel drive/static/drive/javascript --out-dir drive/static/drive/compiled --presets react-app/prod && npx webpack"
+    "build": "npx babel drive/static/drive/javascript --out-dir drive/static/drive/compiled --presets react-app/prod && npx webpack"
   },
   "keywords": [],
   "author": "",
