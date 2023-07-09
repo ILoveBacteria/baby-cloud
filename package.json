@@ -15,7 +15,7 @@
   "main": "App.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx babel drive/static/drive/javascript --out-dir drive/static/drive/compiled --presets react-app/prod && npx webpack"
+    "build": "npx babel drive/static/drive/javascript --out-dir drive/static/drive/compiled --presets react-app/prod && npx babel accounts/static/accounts/javascript --out-dir accounts/static/accounts/compiled --presets react-app/prod && npx webpack"
   },
   "keywords": [],
   "author": "",
