@@ -4,6 +4,7 @@
 {% block head %}
     {{ block.super }}
     <script defer type="module" src={% static 'accounts/dist/login.js' %}></script>
+    <link rel="stylesheet" href={% static 'accounts/css/form.css' %} />
 {% endblock %}
 
 {% block body %}

@@ -13,7 +13,17 @@ export function Field(props) {
 }
 
 export function SubmitButton(props) {
-    return <button className="btn btn-primary" type="submit">{props.name}</button>
+    const [loading, setLoading] = React.useState(false);
+    if (loading) {
+        return (
+            <button className="btn btn-primary" type="submit" disabled>
+                <span className="spinner-border spinner-border-sm" role="status" style={{'marginRight': '0.4rem'}}></span>
+                {props.name}
+            </button>
+        );
+    }
+    return <button className="btn btn-primary" type="submit"
+                   onClick={() => setLoading((prevState) => !prevState)}>{props.name}</button>
 }
 
 export function CSRFToken(props) {
