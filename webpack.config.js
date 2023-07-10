@@ -11,11 +11,14 @@ module.exports = [
     },
     {
         mode: mode,
-        entry: './accounts/static/accounts/compiled/Login.js',
+        entry: {
+            'login': './accounts/static/accounts/compiled/Login.js',
+            'signup': './accounts/static/accounts/compiled/Signup.js'
+        },
         output: {
-            filename: 'login.js',
+            filename: '[name].js',
             path: __dirname + '/accounts/static/accounts/dist',
         }
     },
 ];
-module.exports.parallelism = 2;
+module.exports.parallelism = 4;
