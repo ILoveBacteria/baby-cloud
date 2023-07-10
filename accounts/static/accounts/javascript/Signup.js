@@ -4,12 +4,14 @@ import {Field, SubmitButton, CSRFToken} from "./Form";
 
 
 function Signup(props) {
+    const [loading, setLoading] = React.useState(false);
+
     return (
-        <form method="post">
+        <form method="post" onSubmit={() => setLoading((prevState) => !prevState)}>
             <Field name="Username" type="text"/>
             <Field name="Password" type="password"/>
             <CSRFToken/>
-            <SubmitButton name="Signup"/>
+            <SubmitButton name="Signup" loading={loading}/>
         </form>
     );
 }

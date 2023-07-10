@@ -4,12 +4,14 @@ import {Field, SubmitButton, CSRFToken} from "./Form";
 
 
 function Login(props) {
+    const [loading, setLoading] = React.useState(false);
+
     return (
-        <form method="post">
+        <form method="post" onSubmit={() => setLoading((prevState) => !prevState)}>
             <Field name="Username" type="text"/>
             <Field name="Password" type="password"/>
             <CSRFToken/>
-            <SubmitButton name="Login"/>
+            <SubmitButton name="Login" loading={loading}/>
         </form>
     );
 }
