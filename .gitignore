@@ -5,3 +5,5 @@
 /drive/static/drive/dist/
 */__pycache__/
 */*/__pycache__/
+/accounts/static/accounts/dist/
+/accounts/static/accounts/compiled/
