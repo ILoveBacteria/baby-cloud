@@ -7,6 +7,8 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 @ensure_csrf_cookie
 def login_view(request):
+    if request.user.is_authenticated:
+        return HttpResponse('Already logged in')
     if request.method == 'GET':
         return render(request, 'accounts/login.html', context={'title': 'Login | Baby Cloud'})
     username = request.POST['username']
@@ -25,6 +27,8 @@ def logout_view(request):
 
 @ensure_csrf_cookie
 def signup_view(request):
+    if request.user.is_authenticated:
+        return HttpResponse('Already logged in')
     if request.method == 'GET':
         # TODO: Change titles
         return render(request, 'accounts/signup.html', context={'title': 'Login | Baby Cloud'})

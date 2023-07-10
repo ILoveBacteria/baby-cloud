@@ -4,10 +4,11 @@ import re
 from django.http import JsonResponse, FileResponse, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
-
+from django.contrib.auth.decorators import login_required
 from drive.forms import UploadFileForm
 
 
+@login_required
 @ensure_csrf_cookie
 def drive(request):
     context = {
@@ -16,6 +17,7 @@ def drive(request):
     return render(request, 'drive/drive.html', context)
 
 
+@login_required
 def api_doc(request):
     context = {
         'title': 'API DOC | Baby Cloud'
@@ -23,6 +25,7 @@ def api_doc(request):
     return render(request, 'drive/api_doc.html', context)
 
 
+@login_required
 def api_get_directory(request):
     path = request.GET['path']
     dir_entries = os.scandir(path)
@@ -49,11 +52,14 @@ def api_get_directory(request):
     return JsonResponse(response)
 
 
+# TODO: Cannot download
+@login_required
 def api_download_file(request):
     path = request.GET['path']
     return FileResponse(open(path, 'rb'))
 
 
+@login_required
 def api_upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
