@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
+from accounts.decorators import disable_view
 
 
 @ensure_csrf_cookie
@@ -25,6 +26,7 @@ def logout_view(request):
     return HttpResponse('Logout')
 
 
+@disable_view
 @ensure_csrf_cookie
 def signup_view(request):
     if request.user.is_authenticated:
