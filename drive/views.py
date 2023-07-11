@@ -52,7 +52,6 @@ def api_get_directory(request):
     return JsonResponse(response)
 
 
-# TODO: Cannot download
 @login_required
 def api_download_file(request):
     path = request.GET['path']

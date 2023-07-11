@@ -9,7 +9,7 @@ export function Toolbar(props) {
     let deselectButton = false;
     if (props.selectedFile) {
         downloadButtonClass = 'toolbar-button';
-        selectedFilePath = `./api/file?path=${props.selectedFile.path}`;
+        selectedFilePath = `./api/download_file?path=${props.selectedFile.path}`;
         deselectButton = true;
     }
 
