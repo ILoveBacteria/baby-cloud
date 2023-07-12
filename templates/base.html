@@ -24,7 +24,11 @@
         <meta name="msapplication-TileColor" content="#316197">
         <meta name="msapplication-config" content="{% static 'main/icon/browserconfig.xml' %}">
         <meta name="theme-color" content="#ffffff">
-        <title>{{ title }}</title>
+        {% if title %}
+            <title>{{ title }} | Baby Cloud</title>
+        {% else %}
+            <title>Baby Cloud</title>
+        {% endif %}
     {% endblock %}
 </head>
 <body>

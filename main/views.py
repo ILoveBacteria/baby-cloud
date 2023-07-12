@@ -1,8 +1,10 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 
 def index(request):
-    context = {
-        'title': 'Baby Cloud'
-    }
-    return render(request, 'main/index.html', context)
+    return render(request, 'main/index.html')
+
+
+def favicon(request):
+    return HttpResponseRedirect('/static/main/icon/favicon.ico')

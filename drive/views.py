@@ -12,7 +12,7 @@ from drive.forms import UploadFileForm
 @ensure_csrf_cookie
 def drive(request):
     context = {
-        'title': ' Drive | Baby Cloud'
+        'title': 'Drive'
     }
     return render(request, 'drive/drive.html', context)
 
@@ -20,7 +20,7 @@ def drive(request):
 @login_required
 def api_doc(request):
     context = {
-        'title': 'API DOC | Baby Cloud'
+        'title': 'API DOC'
     }
     return render(request, 'drive/api_doc.html', context)
 

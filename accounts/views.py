@@ -11,7 +11,7 @@ def login_view(request):
     if request.user.is_authenticated:
         return HttpResponse('Already logged in')
     if request.method == 'GET':
-        return render(request, 'accounts/login.html', context={'title': 'Login | Baby Cloud'})
+        return render(request, 'accounts/login.html', context={'title': 'Login'})
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
@@ -32,8 +32,7 @@ def signup_view(request):
     if request.user.is_authenticated:
         return HttpResponse('Already logged in')
     if request.method == 'GET':
-        # TODO: Change titles
-        return render(request, 'accounts/signup.html', context={'title': 'Login | Baby Cloud'})
+        return render(request, 'accounts/signup.html', context={'title': 'Login'})
     username = request.POST['username']
     password = request.POST['password']
     user = User.objects.create_user(username=username, password=password)
