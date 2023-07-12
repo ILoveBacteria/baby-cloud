@@ -6,6 +6,9 @@
 [![Stars](https://img.shields.io/github/stars/ILoveBacteria/baby-cloud)]()
 [![Watchers](https://img.shields.io/github/watchers/ILoveBacteria/baby-cloud)]()
 [![Last commit](https://img.shields.io/github/last-commit/ILoveBacteria/baby-cloud)](https://github.com/ILoveBacteria/baby-cloud/commits/master)
+![GitHub tag](https://img.shields.io/github/v/tag/ILoveBacteria/baby-cloud?color=lightblue&label=last+tag)
+![GitHub release](https://img.shields.io/github/v/release/ILoveBacteria/baby-cloud?color=green)
+![GitHub repo size](https://img.shields.io/github/repo-size/ILoveBacteria/baby-cloud)
 
 [![banner](/assets/banner_README.jpg)]()
 
@@ -20,12 +23,31 @@ transfer files between devices.
 
 A cool feature is you can access your computer files while you not at home *(not yet secure)*
 
+## How to run this project
+
+1. Clone this repo.
+2. Run these commands to install dependencies
+    ```shell
+    pipenv install
+    npm install
+    ```
+3. Build and pack the React web-app
+    ```shell
+    npm run build
+    ```
+4. Migrate and run the server
+    ```shell
+    pipenv run python manage.py makemigrations
+    pipenv run python manage.py migrate
+    pipenv run python manage.py runserver
+    ```
+
 ## Goals
 
 - [x] Explore files
 - [x] Download file
-- [ ] Upload File (expecting the pre-release version)
-- [ ] Login users
+- [x] Upload File
+- [x] Login users
 - [ ] Security
 - [ ] Shortcuts for starting and shutting down the server
 - [ ] UI improvements
