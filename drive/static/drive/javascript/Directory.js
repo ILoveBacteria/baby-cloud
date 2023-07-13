@@ -12,6 +12,9 @@ export function Directory(props) {
     );
 }
 
+/**
+ * Handle click on the directory.
+ */
 function onClickHandler(e, props) {
     if (props.directory.isDirectory) {
         props.changePath(props.directory.path);

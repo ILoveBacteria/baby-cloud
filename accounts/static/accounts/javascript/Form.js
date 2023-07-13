@@ -2,6 +2,11 @@ import React from "react";
 import Cookies from "js-cookie";
 
 
+/**
+ * A form field with a label and input. Gets the name and type from props.
+ * @param props - name and type
+ * @returns {JSX.Element} - a div with a label and input
+ */
 export function Field(props) {
     return (
         <div className="mb-3">
@@ -12,6 +17,11 @@ export function Field(props) {
     );
 }
 
+/**
+ * A Submit button with a spinner if loading is true.
+ * @param props - name and loading
+ * @returns {JSX.Element} - a button
+ */
 export function SubmitButton(props) {
     if (props.loading) {
         return (
@@ -24,6 +34,10 @@ export function SubmitButton(props) {
     return <button className="btn btn-primary" type="submit">{props.name}</button>
 }
 
-export function CSRFToken(props) {
+/**
+ * A CSRF token input field.
+ * @returns {JSX.Element} - a hidden input field
+ */
+export function CSRFToken() {
     return <input type="hidden" value={Cookies.get('csrftoken')} name="csrfmiddlewaretoken"/>
 }

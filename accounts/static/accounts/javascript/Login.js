@@ -3,7 +3,11 @@ import ReactDOM from "react-dom";
 import {Field, SubmitButton, CSRFToken} from "./Form";
 
 
-function Login(props) {
+/**
+ * A login form.
+ * @returns {JSX.Element} - a form
+ */
+function Login() {
     const [loading, setLoading] = React.useState(false);
 
     return (

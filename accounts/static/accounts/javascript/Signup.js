@@ -3,7 +3,11 @@ import ReactDOM from "react-dom";
 import {Field, SubmitButton, CSRFToken} from "./Form";
 
 
-function Signup(props) {
+/**
+ * A signup form.
+ * @returns {JSX.Element} - a form
+ */
+function Signup() {
     const [loading, setLoading] = React.useState(false);
 
     return (
