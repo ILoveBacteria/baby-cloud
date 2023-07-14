@@ -1,10 +1,13 @@
 import os
 import re
 
-from django.http import JsonResponse, FileResponse, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponse
-from django.shortcuts import render
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse, FileResponse, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 from drive.forms import UploadFileForm
 
 
@@ -64,7 +67,8 @@ def api_upload_file(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             handle_uploaded_file(form.cleaned_data['file'], form.cleaned_data['path'])
-            return HttpResponse('OK')
+            messages.add_message(request, messages.SUCCESS, 'File uploaded successfully!')
+            return HttpResponseRedirect(reverse('drive'))
         return HttpResponseBadRequest()
     return HttpResponseNotAllowed(['POST'])
 
