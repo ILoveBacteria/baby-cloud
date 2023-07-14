@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+from django.contrib.messages import constants as message_constants
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -119,3 +121,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# This sets the mapping of message level to message tag, which is typically rendered as a CSS class in HTML.
+# https://docs.djangoproject.com/en/4.2/ref/settings/#std-setting-MESSAGE_TAGS
+
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'alert alert-secondary alert-dismissible fade show',
+    message_constants.INFO: 'alert alert-info alert-dismissible fade show',
+    message_constants.WARNING: 'alert alert-warning alert-dismissible fade show',
+    message_constants.ERROR: 'alert alert-danger alert-dismissible fade show',
+    message_constants.SUCCESS: 'alert alert-success alert-dismissible fade show',
+}
