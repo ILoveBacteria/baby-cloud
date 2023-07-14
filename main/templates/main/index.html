@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>Baby Cloud</h1>
+    <h1>Baby Cloud</h1>
+    <a class="btn btn-primary" href={% url 'login' %}>Login</a>
+    <a class="btn btn-warning" href={% url 'logout' %}>Logout</a>
+    <a class="btn btn-primary" href={% url 'signup' %}>Signup</a>
+    <a class="btn btn-primary" href={% url 'drive' %}>Drive</a>
 {% endblock %}
